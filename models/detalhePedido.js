@@ -1,39 +1,25 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Cliente = require('./Cliente');
 const Pedido = require('./Pedido');
+const Produto = require('./Produto');
 
 const DetalhePedido = sequelize.define('DetalhePedido', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    cliente_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    pedido_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    data_pedido: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW,
-    },
+  dt_id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  dt_valor: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+  dt_desconto: {
+    type: DataTypes.FLOAT,
+    allowNull: true,
+  },
 });
 
-DetalhePedido.belongsTo(Cliente, { 
-    foreignKey: 'cliente_id', 
-    onDelete: 'CASCADE', 
-    onUpdate: 'CASCADE',
-});
-
-DetalhePedido.belongsTo(Pedido, { 
-    foreignKey: 'pedido_id', 
-    onDelete: 'CASCADE', 
-    onUpdate: 'CASCADE',
-});
+DetalhePedido.belongsTo(Pedido, { foreignKey: 'dt_pedido_id' });
+DetalhePedido.belongsTo(Produto, { foreignKey: 'dt_produto_id' });
 
 module.exports = DetalhePedido;

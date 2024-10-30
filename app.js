@@ -1,11 +1,17 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const produtoRotas = require("./rotas/produtoRotas");
+const produtoRotas = require("./routes/produtoRotas");
+const pedidoRotas = require("./routes/pedidoRotas");
+const clienteRotas = require("./routes/clienteRotas");
+
 const sequelize = require("./config/database");
 
 const app = express();
 app.use(bodyParser.json());
+
 app.use("/api", produtoRotas);
+app.use("/api", pedidoRotas);
+app.use("/api", clienteRotas);
 
 const startServer = async() => {
     try {

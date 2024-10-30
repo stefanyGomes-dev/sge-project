@@ -15,7 +15,7 @@ exports.criarCliente = async (req, res) => {
 
 exports.todosClientes = async (req, res) => {
     try {
-        const clientes = await cliente.find(); // Busca todos os clientes
+        const clientes = await cliente.findAll(); // Busca todos os clientes
         res.status(200).json(clientes); // Retorna os clientes encontrados
     } catch (error) {
         res.status(500).json({
@@ -61,4 +61,4 @@ exports.excluirCliente = async (req, res) => {
     } catch(error) {
         res.status(500).json({error: "Erro ao excluir o cliente"})
     }
-}
+};

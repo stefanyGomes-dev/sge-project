@@ -15,7 +15,7 @@ exports.criarProduto = async (req, res) => {
 
 exports.todosProdutos = async (req, res) => {
     try {
-        const produtos = await Produto.find(); // Busca todos os produtos
+        const produtos = await Produto.findAll(); // Busca todos os produtos
         res.status(200).json(produtos); // Retorna os produtos encontrados
     } catch (error) {
         res.status(500).json({

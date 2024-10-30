@@ -1,31 +1,21 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-const Cliente = require('./Cliente'); 
-const Produto = require('./Produto');
+const { DataTypes, Sequelize } = require('sequelize');
+const sequelize = require('./config/database');
+const cliente = require('./models/cliente');
 
 const Pedido = sequelize.define('Pedido', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    cliente_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    produto_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    data_compra: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW, 
-    },
+  pedido_id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  data_compra: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: Sequelize.NOW,
+  },
+
 });
 
-
-Pedido.belongsTo(Cliente, { foreignKey: 'cliente_id' });
-Pedido.belongsTo(Produto, { foreignKey: 'produto_id' });
+Pedido.belongsTo(cliente, { foreignKey: 'cliente_id' });
 
 module.exports = Pedido;
