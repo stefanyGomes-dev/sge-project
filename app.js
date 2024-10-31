@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const produtoRotas = require("./routes/produtoRotas");
 const pedidoRotas = require("./routes/pedidoRotas");
 const clienteRotas = require("./routes/clienteRotas");
+const detalhePedidoRotas = require("./routes/detalhePedidoRotas");
 
 const sequelize = require("./config/database");
 
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 app.use("/api", produtoRotas);
 app.use("/api", pedidoRotas);
 app.use("/api", clienteRotas);
+app.use("/api", detalhePedidoRotas);
 
 const startServer = async() => {
     try {

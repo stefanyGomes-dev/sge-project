@@ -1,21 +1,20 @@
-const { DataTypes } = require('sequilize');
-const sequilize = require('../config/database');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
 
-const cliente = sequilize.define('Cliente', {
-    cliente_id:  {
-        types: DataTypes.INTEGER,
-        primaryKay: true,
+const Cliente = sequelize.define('Cliente', { 
+    cliente_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
         autoIncrement: true,
     },
-    nome: { 
-        type: DataTypes.STRING,
-        allowNull: false,
+    cliente_nome: {
+        type: DataTypes.STRING(50),
+        allowNull: true, 
     },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
+    cliente_email: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
     },
-
 });
 
-module.exports = cliente;
+module.exports = Cliente;
